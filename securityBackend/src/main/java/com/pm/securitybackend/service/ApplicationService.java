@@ -73,8 +73,6 @@ public class ApplicationService {
         user.setId(id);
         user.setName(requestDTO.getName());
         user.setEmail(requestDTO.getEmail());
-        String pass = encoder.encode(requestDTO.getPassword());
-        user.setPassword(pass);
         user.setPhone(requestDTO.getPhone());
         user.setUpdateAt(requestDTO.getUpdateAt());
 
