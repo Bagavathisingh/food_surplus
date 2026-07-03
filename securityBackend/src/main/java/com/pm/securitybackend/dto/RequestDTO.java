@@ -24,9 +24,8 @@ public class RequestDTO {
     @NotNull
     private String email;
 
-    @NotNull
+    @NotNull(groups = CreateUserValidationGroup.class ,message = "the password field is required !")
     private String password;
-
 
     @NotNull
     private String phone;

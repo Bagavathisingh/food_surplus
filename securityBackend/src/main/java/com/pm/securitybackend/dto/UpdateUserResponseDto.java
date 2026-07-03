@@ -14,7 +14,6 @@ import java.util.UUID;
 @JsonPropertyOrder({
     "message",
     "id",
-       "id",
         "email",
         "phone",
         "updateAt"
