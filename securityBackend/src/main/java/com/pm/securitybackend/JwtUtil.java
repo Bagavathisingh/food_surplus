@@ -24,7 +24,7 @@ public class JwtUtil {
     public String tokenGenerate(String email,String role){
         return Jwts.builder()
                 .setSubject(email)
-                .claim(role)
+                .claim("role",role)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis()+EXPIRATION))
                 .signWith(SECRET_KEY(), SignatureAlgorithm.HS256)
@@ -44,7 +44,7 @@ public class JwtUtil {
         return Jwts.parserBuilder()
                 .setSigningKey(SECRET_KEY())
                 .build()
-                .parseClaimsJwt(Token)
+                .parseClaimsJws(Token)
                 .getBody()
                 .get("role",String.class);
     }
