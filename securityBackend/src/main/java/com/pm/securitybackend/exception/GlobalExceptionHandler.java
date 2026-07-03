@@ -29,4 +29,10 @@ public class GlobalExceptionHandler {
         error.put("message","the email was already exists");
         return ResponseEntity.badRequest().body(error);
     }
+
+    @ExceptionHandler(UserNotFoundedException.class)
+    public ResponseEntity<Map<String,String>> HandlingUserNotFoundedException(UserNotFoundedException ex){
+        log.warn("The user not founded in the repository {}",ex.getMessage());
+        return ResponseEntity.badRequest().body(Map.of("message","The user id not founded in the repository , check the UUID of the user is whether it is correct or not "));
+    }
 }

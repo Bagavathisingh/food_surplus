@@ -1,7 +1,10 @@
 package com.pm.securitybackend.dto;
 
+import com.pm.securitybackend.model.Role.Role;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,9 +19,9 @@ import java.util.UUID;
 @NoArgsConstructor
 public class UserResponseDTO {
 
-    @Id
     @NotNull
     UUID id;
+
 
     @NotNull
     String name;
@@ -28,5 +31,14 @@ public class UserResponseDTO {
     String email;
 
     @NotNull
+    boolean verified;
+
+    @NotNull
+    private Role role;
+
+    @NotNull
     String CreatedAt;
+
+    @NotNull
+    String UpdateAt;
 }

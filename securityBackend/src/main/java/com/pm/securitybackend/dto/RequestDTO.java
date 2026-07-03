@@ -1,33 +1,47 @@
 package com.pm.securitybackend.dto;
 
 
-import jakarta.persistence.Id;
+import com.pm.securitybackend.dto.validator.CreateUserValidationGroup;
+import com.pm.securitybackend.model.Role.Role;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.UUID;
-
+import java.time.LocalDate;
 
 @AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
 public class RequestDTO {
     @NotNull
     private String name;
 
-    @Email
+    @Email()
     @NotNull
     private String email;
 
     @NotNull
     private String password;
 
+
     @NotNull
-    private String CreatedAt;
+    private String phone;
+
+    @NotNull(groups = CreateUserValidationGroup.class ,message = "the Role field is required !")
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    @NotNull(groups = CreateUserValidationGroup.class ,message = "the Verified state is required !")
+    private Boolean verified;
+
+    @NotNull(groups = CreateUserValidationGroup.class ,message = "the Created date is required !")
+    private LocalDate createdAt;
+
+    @NotNull
+    private LocalDate updateAt;
 
 }
