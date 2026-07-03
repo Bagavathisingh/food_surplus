@@ -27,7 +27,7 @@ public class Mapper {
         UserresponseDTO.setCreatedAt(String.valueOf(user.getCreatedAt()));
         UserresponseDTO.setUpdateAt(String.valueOf(user.getUpdateAt()));
 
-        String JwtToken = jwtUtil.tokenGenerate(user.getEmail());
+        String JwtToken = jwtUtil.tokenGenerate(user.getEmail(),user.getRole().name());
         return new ResponseDTO(
                 JwtToken,
                 "Bearer ",
@@ -41,7 +41,6 @@ public class Mapper {
         updateDto.setId(user.getId());
         updateDto.setEmail(user.getEmail());
         updateDto.setName(user.getName());
-        updateDto.setPassword(user.getPassword());
         updateDto.setUpdateAt(user.getUpdateAt().toString());
         updateDto.setPhone(user.getPhone());
         updateDto.setMessage("Your Details has been Updated !");

@@ -16,7 +16,6 @@ import java.util.UUID;
     "id",
        "id",
         "email",
-        "password",
         "phone",
         "updateAt"
 })
@@ -31,9 +30,6 @@ public class UpdateUserResponseDto {
     @NotNull
     @Email
     private String email;
-
-    @NotNull
-    private String password;
 
     @NotNull
     private String phone;

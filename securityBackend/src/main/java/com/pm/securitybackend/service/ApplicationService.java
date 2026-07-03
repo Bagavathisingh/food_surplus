@@ -23,10 +23,10 @@ public class ApplicationService {
     private final Mapper mapper;
     private final PasswordEncoder encoder;
 
-    public ApplicationService(UserRepository userRepository , Mapper mapper, PasswordEncoder encoder, PasswordEncoder encoder1){
+    public ApplicationService(UserRepository userRepository , Mapper mapper, PasswordEncoder encoder){
         this.userRepository = userRepository;
         this.mapper = mapper;
-        this.encoder = encoder1;
+        this.encoder = encoder;
     }
 
 
@@ -62,9 +62,6 @@ public class ApplicationService {
         return userRepository.findAll().stream().map(mapper::ToDtoOfAll).toList();
     }
 
-    public ResponseDTO UpdateUserDetails() {
-        return null;
-    }
 
     public UpdateUserResponseDto UpdateUserDetails(UUID id, RequestDTO requestDTO) {
         AppUser user = userRepository.findById(id).orElseThrow(()->new UserNotFoundedException("The User is not founded "));
