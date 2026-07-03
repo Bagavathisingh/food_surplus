@@ -33,12 +33,14 @@ public class ApplicationController {
         return ResponseEntity.ok().body(response);
     }
 
+
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/GetUsers")
     public ResponseEntity<List<GetAllUsersDto>> GetUsers(){
         List<GetAllUsersDto> users = service.getUsers();
         return ResponseEntity.ok().body(users);
     }
+
 
     @PutMapping("/userUpdate/{id}")
     public ResponseEntity<UpdateUserResponseDto> updateUser(@PathVariable UUID id, @Validated({Builder.Default.class}) @RequestBody RequestDTO requestDTO){
