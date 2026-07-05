@@ -1,5 +1,6 @@
 package com.pm.securitybackend.service;
 
+
 import com.pm.securitybackend.dto.*;
 import com.pm.securitybackend.exception.EmailAlreadyExistsException;
 import com.pm.securitybackend.exception.UserNotFoundedException;
@@ -23,11 +24,13 @@ public class ApplicationService {
     private final Mapper mapper;
     private final PasswordEncoder encoder;
 
-    public ApplicationService(UserRepository userRepository , Mapper mapper, PasswordEncoder encoder){
+
+    public ApplicationService(UserRepository userRepository , Mapper mapper, PasswordEncoder encoder) {
         this.userRepository = userRepository;
         this.mapper = mapper;
         this.encoder = encoder;
     }
+
 
 
     public ResponseDTO createUser(RequestDTO requestDTO){
@@ -49,6 +52,7 @@ public class ApplicationService {
         if(user.isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message","There is no account with this email "+mail));
         }
+
         AppUser userDetail = user.get();
         if(!encoder.matches(pass,userDetail.getPassword())){
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("message","The username or password was Invalid !"));
@@ -61,6 +65,7 @@ public class ApplicationService {
     public List<GetAllUsersDto> getUsers() {
         return userRepository.findAll().stream().map(mapper::ToDtoOfAll).toList();
     }
+
 
 
     public UpdateUserResponseDto UpdateUserDetails(UUID id, RequestDTO requestDTO) {
@@ -79,8 +84,8 @@ public class ApplicationService {
         return mapper.UpdatedDTO(user);
     }
 
-    public Map<String,String> DeleteUserDetail(UUID id)
-    {
+
+    public Map<String,String> DeleteUserDetail(UUID id){
         if(userRepository.findById(id).isPresent()){
             userRepository.deleteById(id);
             return Map.of("message","The user detail is Deleted Successfully ");
@@ -89,4 +94,7 @@ public class ApplicationService {
             return Map.of("message","the user detail is not founded ");
         }
     }
+
+
+
 }

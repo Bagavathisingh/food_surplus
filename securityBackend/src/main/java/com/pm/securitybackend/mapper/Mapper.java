@@ -6,8 +6,6 @@ import com.pm.securitybackend.model.AppUser;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
-
 @Component
 public class Mapper {
     private final JwtUtil jwtUtil;
@@ -64,8 +62,6 @@ public class Mapper {
 
         String pass = encoder.encode(requestDTO.getPassword());
         newUser.setPassword(pass);
-
-
         newUser.setPhone(requestDTO.getPhone());
         newUser.setRole(requestDTO.getRole());
         newUser.setVerified(requestDTO.getVerified());

@@ -22,6 +22,10 @@ public class ApplicationController {
     @Autowired
     private ApplicationService service;
 
+    @GetMapping("/")
+    public String greet(){
+        return "Hello World";
+    }
     @PostMapping("/userLogin")
     public ResponseEntity<?> Login(@Valid @RequestBody LoginRequestDto requestDTO){
         return service.loginUser(requestDTO);
@@ -33,14 +37,12 @@ public class ApplicationController {
         return ResponseEntity.ok().body(response);
     }
 
-
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/GetUsers")
     public ResponseEntity<List<GetAllUsersDto>> GetUsers(){
         List<GetAllUsersDto> users = service.getUsers();
         return ResponseEntity.ok().body(users);
     }
-
 
     @PutMapping("/userUpdate/{id}")
     public ResponseEntity<UpdateUserResponseDto> updateUser(@PathVariable UUID id, @Validated({Builder.Default.class}) @RequestBody RequestDTO requestDTO){
@@ -53,4 +55,6 @@ public class ApplicationController {
         Map<String,String> response = service.DeleteUserDetail(id);
         return ResponseEntity.ok().body(response);
     }
+
+
 }
