@@ -1,7 +1,7 @@
 package com.pm.food_service.models;
 
 
-import com.pm.food_service.models.FoodType.FoofType;
+import com.pm.food_service.models.FoodType.FoodType;
 import com.pm.food_service.models.foodStatus.FoodStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -31,7 +31,7 @@ public class Food {
     @NotNull
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private FoofType food_type;
+    private FoodType food_type;
 
 
     @Min(1)

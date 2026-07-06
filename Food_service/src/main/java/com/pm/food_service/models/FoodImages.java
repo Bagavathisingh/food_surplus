@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -20,4 +21,7 @@ public class FoodImages {
 
     @NotBlank
     private String image_url;
+
+    @NotNull
+    private LocalDateTime createdAt;
 }

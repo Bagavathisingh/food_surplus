@@ -1,6 +1,6 @@
 package com.pm.food_service.models.FoodType;
 
-public enum FoofType {
+public enum FoodType {
     VEG,
     Non_Veg
 }
