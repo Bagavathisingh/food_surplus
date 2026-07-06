@@ -70,7 +70,6 @@ public class ApplicationService {
 
     public UpdateUserResponseDto UpdateUserDetails(UUID id, RequestDTO requestDTO) {
         AppUser user = userRepository.findById(id).orElseThrow(()->new UserNotFoundedException("The User is not founded "));
-
         if(userRepository.existsByEmailAndIdNot(requestDTO.getEmail(),id)){
             throw new EmailAlreadyExistsException("The user with this Email is Already exists ");
         }

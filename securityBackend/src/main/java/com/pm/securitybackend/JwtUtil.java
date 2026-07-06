@@ -11,6 +11,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.time.Duration;
 import java.util.Date;
+import java.util.UUID;
 
 @Component
 public class JwtUtil {
@@ -21,9 +22,10 @@ public class JwtUtil {
 
     private Key SECRET_KEY (){  return Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8));}
 
-    public String tokenGenerate(String email,String role){
+    public String tokenGenerate(String email, String role, UUID id){
         return Jwts.builder()
                 .setSubject(email)
+                .claim("user_id",id)
                 .claim("role",role)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis()+EXPIRATION))
@@ -39,7 +41,6 @@ public class JwtUtil {
                 .getBody()
                 .getSubject();
     }
-
     public String ExtractRoleFromJwt(String Token){
         return Jwts.parserBuilder()
                 .setSigningKey(SECRET_KEY())

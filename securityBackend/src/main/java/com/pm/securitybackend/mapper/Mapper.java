@@ -25,7 +25,7 @@ public class Mapper {
         UserresponseDTO.setCreatedAt(String.valueOf(user.getCreatedAt()));
         UserresponseDTO.setUpdateAt(String.valueOf(user.getUpdateAt()));
 
-        String JwtToken = jwtUtil.tokenGenerate(user.getEmail(),user.getRole().name());
+        String JwtToken = jwtUtil.tokenGenerate(user.getEmail(),user.getRole().name(),user.getId());
         return new ResponseDTO(
                 JwtToken,
                 "Bearer ",
