@@ -21,11 +21,6 @@ import java.util.UUID;
 public class ApplicationController {
     @Autowired
     private ApplicationService service;
-
-    @GetMapping("/")
-    public String greet(){
-        return "Hello World";
-    }
     @PostMapping("/userLogin")
     public ResponseEntity<?> Login(@Valid @RequestBody LoginRequestDto requestDTO){
         return service.loginUser(requestDTO);

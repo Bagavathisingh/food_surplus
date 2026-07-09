@@ -5,18 +5,26 @@ import com.pm.food_service.models.FoodType.FoodType;
 import com.pm.food_service.models.foodStatus.FoodStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
+@Setter
+@Getter
 public class Food {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @NotEmpty
+    @NotNull
     private UUID donor_id;
 
     @NotBlank
@@ -63,11 +71,20 @@ public class Food {
     @Column(nullable = false)
     private FoodStatus food_status;
 
-    @NotNull
-    private LocalDate Created_At;
+    @OneToMany(
+            mappedBy = "food",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
+    private List<FoodImages> foodImages = new ArrayList<>();
 
-    @NotNull
-    private LocalDate Updated_At;
+    @CreationTimestamp
+    @Column(updatable = false)
+    private LocalDateTime created_At;
+
+    @UpdateTimestamp
+    private LocalDateTime updated_At;
 
 
 }

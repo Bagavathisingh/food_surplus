@@ -1,6 +1,7 @@
 package com.pm.api_gateway.JwtFilter;
 
 import com.pm.api_gateway.util.JwtUtil;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.http.HttpHeaders;
@@ -14,6 +15,9 @@ import reactor.core.publisher.Mono;
 public class JwtAuthenticationFilter implements GlobalFilter {
     private final JwtUtil jwtUtil;
 
+    @Value("${api.gateway.key}")
+    private String Api_Gateway_Key;
+
     public JwtAuthenticationFilter(JwtUtil jwtUtil) {
         this.jwtUtil = jwtUtil;
     }
@@ -22,7 +26,16 @@ public class JwtAuthenticationFilter implements GlobalFilter {
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         String path = exchange.getRequest().getURI().getPath();
         if(path.startsWith("/api/auth")){
-            return chain.filter(exchange);
+
+            ServerHttpRequest request = exchange.getRequest()
+                    .mutate()
+                    .header("X-Api-Gateway-Key",Api_Gateway_Key)
+                    .build();
+            ServerWebExchange requestExchange = exchange.mutate()
+                    .request(request)
+                    .build();
+
+            return chain.filter(requestExchange);
         }
         String header = exchange.getRequest().getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
 
@@ -44,6 +57,7 @@ public class JwtAuthenticationFilter implements GlobalFilter {
 
         ServerHttpRequest request = exchange.getRequest()
                 .mutate()
+                .header("X-Api-Gateway-Key",Api_Gateway_Key)
                 .header("X-User-Id",userId)
                 .header("X-User-Role",role)
                 .build();

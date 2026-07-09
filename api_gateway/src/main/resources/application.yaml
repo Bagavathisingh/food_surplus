@@ -3,20 +3,26 @@ server:
 
 spring:
   application:
-    name: api_gateway
+    name: api-gateway
 
   cloud:
     gateway:
-      routes:
-        - id: securityBackend
-          uri: http://localhost:8081
-          predicates:
-            - Path=/api/auth/**
+      server:
+        webflux:
+          routes:
+            - id: auth-service
+              uri: http://localhost:8081
+              predicates:
+                - Path=/api/auth/**
 
-        - id: Food_service
-          uri: http://localhost:8082
-          predicates:
-            - Path=/api/food/**
+            - id: food-service
+              uri: http://localhost:8082
+              predicates:
+                - Path=/api/food/**
 
 jwt:
   secret: ${JWT_SECRET}
+
+api:
+  gateway:
+    key: ${API_GATE_WAY_KEY}

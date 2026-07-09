@@ -26,13 +26,13 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String,String>> HandlingEmailAlreadyExistsException(EmailAlreadyExistsException ex){
         log.warn("The email was already Exists");
         Map<String,String> error = new HashMap<>();
-        error.put("message","the email was already exists");
+        error.put("message",ex.getMessage());
         return ResponseEntity.badRequest().body(error);
     }
 
     @ExceptionHandler(UserNotFoundedException.class)
     public ResponseEntity<Map<String,String>> HandlingUserNotFoundedException(UserNotFoundedException ex){
         log.warn("The user not founded in the repository {}",ex.getMessage());
-        return ResponseEntity.badRequest().body(Map.of("message","The user id not founded in the repository , check the UUID of the user is whether it is correct or not "));
+        return ResponseEntity.badRequest().body(Map.of("message",ex.getMessage()));
     }
 }
