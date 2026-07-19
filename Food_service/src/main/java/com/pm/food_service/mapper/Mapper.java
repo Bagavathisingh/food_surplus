@@ -28,8 +28,6 @@ public class Mapper {
         foodEntity.setLatitude(createFoodRequestDTO.getLatitude());
         foodEntity.setLongitude(createFoodRequestDTO.getLongitude());
         foodEntity.setFood_status(createFoodRequestDTO.getFoodStatus());
-        foodEntity.setCreated_At(createFoodRequestDTO.getCreated_At());
-        foodEntity.setUpdated_At(createFoodRequestDTO.getUpdated_At());
 
         return foodEntity;
     }

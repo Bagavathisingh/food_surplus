@@ -45,8 +45,8 @@ public class Mapper {
         return updateDto;
     }
 
-    public GetAllUsersDto ToDtoOfAll(AppUser user){
-        GetAllUsersDto users = new GetAllUsersDto();
+    public GetUsersDto ToDtoOfAll(AppUser user){
+        GetUsersDto users = new GetUsersDto();
         users.setId(user.getId());
         users.setName(user.getName());
         users.setEmail(user.getEmail());

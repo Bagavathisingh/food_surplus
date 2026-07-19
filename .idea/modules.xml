@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/FoodsurPlus_Service.iml" filepath="$PROJECT_DIR$/.idea/FoodsurPlus_Service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/notification_service/notification_service.iml" filepath="$PROJECT_DIR$/notification_service/notification_service.iml" />
     </modules>
   </component>
 </project>

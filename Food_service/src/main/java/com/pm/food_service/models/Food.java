@@ -66,6 +66,7 @@ public class Food {
     @DecimalMin("0.1")
     private double longitude;
 
+
     @NotNull
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

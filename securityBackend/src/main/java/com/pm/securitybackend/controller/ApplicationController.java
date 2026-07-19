@@ -34,8 +34,8 @@ public class ApplicationController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/GetUsers")
-    public ResponseEntity<List<GetAllUsersDto>> GetUsers(){
-        List<GetAllUsersDto> users = service.getUsers();
+    public ResponseEntity<List<GetUsersDto>> GetUsers(){
+        List<GetUsersDto> users = service.getUsers();
         return ResponseEntity.ok().body(users);
     }
 
@@ -51,5 +51,10 @@ public class ApplicationController {
         return ResponseEntity.ok().body(response);
     }
 
+    @GetMapping("/GetUsers/{id}")
+    public ResponseEntity<GetUsersDto> GetuserUsingId(@PathVariable UUID id){
+        GetUsersDto responseDTO = service.getuserById(id);
+        return ResponseEntity.ok().body(responseDTO);
+    }
 
 }

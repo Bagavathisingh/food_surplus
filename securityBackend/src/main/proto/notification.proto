@@ -2,11 +2,11 @@ syntax = "proto3";
 
 option java_multiple_files = true;
 
-option java_package = "notification";
+option java_package = "notificationClient";
 
-service notificationService{
-  rpc sendNotification(notificationRequest)
-      returns (notificationResponse);
+service notificationClient{
+  rpc sentNotification(notificationRequest)
+    returns (notificationResponse);
 }
 
 message notificationRequest{

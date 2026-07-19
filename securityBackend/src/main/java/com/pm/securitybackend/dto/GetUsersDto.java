@@ -19,7 +19,7 @@ import java.util.UUID;
         "createdAt",
         "updateAt"
 })
-public class GetAllUsersDto {
+public class GetUsersDto {
     @Id
     private UUID id;
 

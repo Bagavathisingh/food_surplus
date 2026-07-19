@@ -7,9 +7,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="notification_service" />
         <module name="api_gateway" />
       </profile>
-      <profile name="Annotation profile for Food_service" enabled="true">
+      <profile name="Annotation profile for securityBackend" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -17,8 +18,8 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
         </processorPath>
-        <module name="Food_service" />
         <module name="securityBackend" />
+        <module name="Food_service" />
       </profile>
     </annotationProcessing>
   </component>
@@ -26,6 +27,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Food_service" options="-parameters" />
       <module name="api_gateway" options="-parameters" />
+      <module name="notification_service" options="-parameters" />
       <module name="securityBackend" options="-parameters" />
     </option>
   </component>

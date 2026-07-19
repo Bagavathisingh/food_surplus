@@ -51,10 +51,4 @@ public class CreateFoodRequestDTO {
 
     @NotNull
     private List<String> imageUrls = new ArrayList<>();
-
-    @NotNull
-    private LocalDateTime Created_At;
-
-    @NotNull
-    private LocalDateTime Updated_At;
 }

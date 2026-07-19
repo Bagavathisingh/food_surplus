@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -62,7 +63,7 @@ public class ApplicationService {
     }
 
 
-    public List<GetAllUsersDto> getUsers() {
+    public List<GetUsersDto> getUsers() {
         return userRepository.findAll().stream().map(mapper::ToDtoOfAll).toList();
     }
 
@@ -95,5 +96,11 @@ public class ApplicationService {
     }
 
 
-
+    public GetUsersDto getuserById(UUID id) {
+        Optional<AppUser> user = userRepository.findById(id);
+        if (user.isEmpty()){
+            throw new UserNotFoundedException("The user is not founded ");
+        }
+        return mapper.ToDtoOfAll(user.get());
+    }
 }
